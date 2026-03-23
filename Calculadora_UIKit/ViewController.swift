@@ -2,120 +2,75 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var displayLabel = UILabel()
-    private var currentNumber: Double = 0
-    private var previousNumber: Double = 0
-    private var operation: String = ""
-    private var isTyping = false
+    var displayLabel = UILabel()
+    var currentNumber: Double = 0
+    var previousNumber: Double = 0
+    var operation: String = ""
+    var isTyping = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
 
-        setupDisplay()
-        setupButtons()
-        // Do any additional setup after loading the view.
-    }
-
-    private func setupDisplay() {
+        displayLabel.frame = CGRect(x: 20, y: 80, width: 300, height: 80)
         displayLabel.text = "0"
         displayLabel.textColor = .white
         displayLabel.font = UIFont.systemFont(ofSize: 40)
         displayLabel.textAlignment = .right
-        displayLabel.translatesAutoresizingMaskIntoConstraints = false
-
         view.addSubview(displayLabel)
 
-        NSLayoutConstraint.activate([
-            displayLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            displayLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            displayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            displayLabel.heightAnchor.constraint(equalToConstant: 80)
-        ])
-    }   
+        let titles = ["1","2","3","+","4","5","6","="]
 
-    private func createButton(title: String) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-        button.backgroundColor = .darkGray
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let buttonWidth: CGFloat = 70
+        let buttonHeight: CGFloat = 70
+        var x: CGFloat = 20
+        var y: CGFloat = 180
 
-        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        for (index, title) in titles.enumerated() {
 
-        return button
-    }
+            let button = UIButton(type: .system)
+            button.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
+            button.setTitle(title, for: .normal)
+            button.backgroundColor = .darkGray
+            button.setTitleColor(.white, for: .normal)
 
-    private func setupButtons() {
-        let rows = [
-            ["1", "2", "3", "+"],
-            ["4", "5", "6", "-"],
-            ["7", "8", "9", "*"],
-            ["0", "=", "C", "/"]
-        ]
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 
-        let mainStack = UIStackView()
-        mainStack.axis = .vertical
-        mainStack.spacing = 10
-        mainStack.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(button)
 
-        for row in rows {
-            let rowStack = UIStackView()
-            rowStack.axis = .horizontal
-            rowStack.spacing = 10
-            rowStack.distribution = .fillEqually
+            x += buttonWidth + 10
 
-            for title in row {
-                let button = createButton(title: title)
-                rowStack.addArrangedSubview(button)
+            if (index + 1) % 4 == 0 {
+                x = 20
+                y += buttonHeight + 10
             }
-
-            mainStack.addArrangedSubview(rowStack)
         }
-
-        view.addSubview(mainStack)
-
-        NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: displayLabel.bottomAnchor, constant: 20),
-            mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            mainStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-        ])
     }
 
-    @objc private func buttonTapped(_ sender: UIButton) {
-    guard let text = sender.currentTitle else { return }
+    @objc func buttonTapped(_ sender: UIButton) {
+        guard let text = sender.currentTitle else { return }
 
-    if Double(text) != nil {
-        if isTyping {
-            displayLabel.text = displayLabel.text! + text
+        if Double(text) != nil {
+            if isTyping {
+                displayLabel.text = displayLabel.text! + text
+            } else {
+                displayLabel.text = text
+                isTyping = true
+            }
         } else {
-            displayLabel.text = text
-            isTyping = true
-        }
-    } else {
-        switch text {
-            case "+":
+            if text == "+" {
                 previousNumber = Double(displayLabel.text!) ?? 0
                 operation = "+"
                 isTyping = false
+            }
 
-            case "=":
+            if text == "=" {
                 currentNumber = Double(displayLabel.text!) ?? 0
 
                 if operation == "+" {
                     displayLabel.text = "\(previousNumber + currentNumber)"
                 }
-
-            default:
-                break
             }
         }
     }
-
-    
-
 }
-
