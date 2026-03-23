@@ -2,75 +2,77 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var displayLabel = UILabel()
-    var currentNumber: Double = 0
-    var previousNumber: Double = 0
-    var operation: String = ""
-    var isTyping = false
+    
+    @IBOutlet weak var resultadoLabel: UILabel!
+    
+    var num1: Double = 0
+    var num2: Double = 0
+    var operacion: String = ""
+    var estaEscribiendo = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
+    @IBAction func botonPresionado(_ sender: UIButton) {
+       let texto = sender.currentTitle!
+       if Double(texto) != nil || texto == "." {
+           manejarNumero(texto)
+       } else {
+           manejarOperacion(texto)
+       }
+    }
 
-        displayLabel.frame = CGRect(x: 20, y: 80, width: 300, height: 80)
-        displayLabel.text = "0"
-        displayLabel.textColor = .white
-        displayLabel.font = UIFont.systemFont(ofSize: 40)
-        displayLabel.textAlignment = .right
-        view.addSubview(displayLabel)
-
-        let titles = ["1","2","3","+","4","5","6","="]
-
-        let buttonWidth: CGFloat = 70
-        let buttonHeight: CGFloat = 70
-        var x: CGFloat = 20
-        var y: CGFloat = 180
-
-        for (index, title) in titles.enumerated() {
-
-            let button = UIButton(type: .system)
-            button.frame = CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
-            button.setTitle(title, for: .normal)
-            button.backgroundColor = .darkGray
-            button.setTitleColor(.white, for: .normal)
-
-            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-
-            view.addSubview(button)
-
-            x += buttonWidth + 10
-
-            if (index + 1) % 4 == 0 {
-                x = 20
-                y += buttonHeight + 10
-            }
+    func manejarNumero(_ texto: String) {
+        if estaEscribiendo {
+            resultadoLabel.text = resultadoLabel.text! + texto
+        } else {
+            resultadoLabel.text = texto
+            estaEscribiendo = true
         }
     }
 
-    @objc func buttonTapped(_ sender: UIButton) {
-        guard let text = sender.currentTitle else { return }
+    func manejarOperacion(_ texto: String) {
 
-        if Double(text) != nil {
-            if isTyping {
-                displayLabel.text = displayLabel.text! + text
-            } else {
-                displayLabel.text = text
-                isTyping = true
-            }
-        } else {
-            if text == "+" {
-                previousNumber = Double(displayLabel.text!) ?? 0
-                operation = "+"
-                isTyping = false
-            }
-
-            if text == "=" {
-                currentNumber = Double(displayLabel.text!) ?? 0
-
-                if operation == "+" {
-                    displayLabel.text = "\(previousNumber + currentNumber)"
-                }
-            }
+        if texto == "+" || texto == "-" || texto == "x" || texto == "/" {
+            num1 = Double(resultadoLabel.text!) ?? 0
+            operacion = texto
+            estaEscribiendo = false
+            return
         }
+
+        if texto == "=" {
+            num2 = Double(resultadoLabel.text!) ?? 0
+
+            switch operacion {
+            case "+":
+                resultadoLabel.text = "\(num1 + num2)"
+            case "-":
+                resultadoLabel.text = "\(num1 - num2)"
+            case "x":
+                resultadoLabel.text = "\(num1 * num2)"
+            case "/":
+                if num2 == 0 {
+                    resultadoLabel.text = "Error"
+                } else {
+                    resultadoLabel.text = "\(num1 / num2)"
+                }
+            default:
+                break
+            }
+
+            estaEscribiendo = false
+        }
+
+        if texto == "C" {
+            resultadoLabel.text = "0"
+            num1 = 0
+            num2 = 0
+            operacion = ""
+            estaEscribiendo = false
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        resultadoLabel.text = "0"
+        view.backgroundColor = .red
+        print("Si cargo")
     }
 }
