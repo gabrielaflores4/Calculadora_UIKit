@@ -88,7 +88,7 @@ class ViewController: UIViewController {
     @objc private func buttonTapped(_ sender: UIButton) {
     guard let text = sender.currentTitle else { return }
 
-    if let number = Double(text) {
+    if Double(text) != nil {
         if isTyping {
             displayLabel.text = displayLabel.text! + text
         } else {
