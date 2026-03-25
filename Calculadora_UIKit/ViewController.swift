@@ -11,14 +11,13 @@ class ViewController: UIViewController {
     var estaEscribiendo = false
 
     @IBAction func botonPresionado(_ sender: UIButton) {
-       if let texto = sender.titleLabel?.text
-        {
-           if Double(texto) != nil || texto == "." {
-              manejarNumero(texto)
-           } else if texto == "."{
-              manejarNumero(texto)
-           }else{manejarOperacion(texto)}
-       }
+      if let texto = sender.title(for: .normal) {  
+            if Double(texto) != nil || texto == "." {
+                manejarNumero(texto)
+            } else {
+                manejarOperacion(texto)
+            }
+        }
     }
 
     func manejarNumero(_ texto: String) {
