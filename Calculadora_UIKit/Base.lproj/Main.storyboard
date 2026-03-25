@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbf-fz-vXg">
-                                <rect key="frame" x="20" y="266" width="349" height="48"/>
+                                <rect key="frame" x="20" y="232" width="349" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3uF-DI-3NY">
-                                <rect key="frame" x="16" y="322" width="361" height="480"/>
+                                <rect key="frame" x="16" y="288" width="361" height="480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XMR-3t-CNV">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="80"/>
@@ -71,6 +71,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="irs-Us-apz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcw-EG-zeO">
                                                 <rect key="frame" x="185.66666666666666" y="0.0" width="82.666666666666657" height="80"/>
@@ -79,6 +82,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ng8-kd-Z4h"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bG0-ZU-dDe">
                                                 <rect key="frame" x="278.33333333333331" y="0.0" width="82.666666666666686" height="80"/>
@@ -88,6 +94,7 @@
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchDragInside" id="7l3-55-9gK"/>
                                                     <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w3Q-zm-JXz"/>
                                                 </connections>
                                             </button>
@@ -103,6 +110,10 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WLS-Q2-ZC3"/>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchDragInside" id="pjv-me-ie0"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKk-tQ-Ahd">
                                                 <rect key="frame" x="92.666666666666686" y="0.0" width="83" height="80"/>
@@ -146,6 +157,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="izw-aI-zAS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq4-ac-qob">
                                                 <rect key="frame" x="92.666666666666686" y="0.0" width="83" height="80"/>
@@ -154,6 +168,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K8z-XG-SCi"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeF-rO-gcq">
                                                 <rect key="frame" x="185.66666666666666" y="0.0" width="82.666666666666657" height="80"/>
@@ -162,6 +179,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M5b-pS-fXy"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4td-bE-hXG">
                                                 <rect key="frame" x="278.33333333333331" y="0.0" width="82.666666666666686" height="80"/>
@@ -186,6 +206,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchDragInside" id="wSM-08-8gI"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SdR-qF-5wH">
                                                 <rect key="frame" x="92.666666666666686" y="0.0" width="83" height="80"/>
@@ -194,6 +217,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchDragInside" id="5Gg-8B-gOM"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ul4-1u-Bnu">
                                                 <rect key="frame" x="185.66666666666666" y="0.0" width="82.666666666666657" height="80"/>
@@ -203,6 +229,7 @@
                                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
+                                                    <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchDragInside" id="79T-0W-uoI"/>
                                                     <action selector="botonPresionado:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HUq-tb-wca"/>
                                                 </connections>
                                             </button>
@@ -222,7 +249,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculadora" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icM-lb-FJA">
-                                <rect key="frame" x="20.000000000000007" y="74" width="118.66666666666669" height="32.333333333333343"/>
+                                <rect key="frame" x="20.000000000000007" y="133" width="118.66666666666669" height="32.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32.333333333333336" id="gon-kS-a3W"/>
                                 </constraints>
@@ -258,7 +285,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
