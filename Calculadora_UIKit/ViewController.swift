@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     var estaEscribiendo = false
 
     @IBAction func botonPresionado(_ sender: UIButton) {
-        if let texto = sender.title(for: .normal) {
+        if let texto = sender.titleLabel?.text {
             print("Botón:", texto)
             if Double(texto) != nil || texto == "." {
                 manejarNumero(texto)
