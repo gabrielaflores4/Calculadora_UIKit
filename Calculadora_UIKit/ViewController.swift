@@ -1,5 +1,4 @@
 import UIKit
-import SwiftUI
 
 class ViewController: UIViewController {
 
@@ -158,38 +157,4 @@ override func viewDidLoad() {
         super.viewDidLoad()
         resultadoLabel.text = "0"
     }
-}
-
-//Preview
-struct UIKitContentView_Preview: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UINavigationController {
-        let bundle = Bundle(for: ViewController.self)
-        print("Bundle: \(bundle)")
-        
-        // Verificar que el storyboard existe en el bundle
-        guard let storyboardURL = bundle.url(forResource: "Main", withExtension: "storyboardc") else {
-            fatalError("No se encontró Main.storyboardc en el bundle \(bundle)")
-        }
-        print("Storyboard encontrado en: \(storyboardURL)")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        
-        // Intentar instanciar el controlador por su identifier
-        let identifier = "ViewController"
-        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        print("Controlador instanciado: \(vc)")
-        
-        guard let viewController = vc as? ViewController else {
-            fatalError("El controlador con identifier '\(identifier)' no es de tipo ViewController. Es de tipo: \(type(of: vc))")
-        }
-        
-        viewController.loadViewIfNeeded()
-        return UINavigationController(rootViewController: viewController)
-    }
-    
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) { }
-}
-
-#Preview {
-    UIKitContentView_Preview()
 }
