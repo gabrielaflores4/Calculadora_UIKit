@@ -22,19 +22,27 @@ class ViewController: UIViewController {
         }
     }
 
-    func manejarNumero(_ texto: String) {
-        
-        if texto == "." && resultadoLabel.text?.contains(".") == true {
-            return
+func manejarNumero(_ texto: String) {
+    
+    if texto == "." && resultadoLabel.text?.contains(".") == true {
+        return
+    }
+    
+    if estaEscribiendo {
+        if let actual = resultadoLabel.text {
+            resultadoLabel.text = actual + texto
         }
-        
-        if estaEscribiendo {
-            resultadoLabel.text = (resultadoLabel.text ?? "") + texto
-        } else {
-            resultadoLabel.text = texto
-            estaEscribiendo = true
+    } else {
+        resultadoLabel.text = texto
+        estaEscribiendo = true
+    }
+
+    if operacion != "" {
+        if let textoLabel = resultadoLabel.text {
+            resultadoLabel.text = historial + " " + textoLabel
         }
     }
+}
 
 func manejarOperacion(_ texto: String) {
 
@@ -87,8 +95,14 @@ func manejarOperacion(_ texto: String) {
     if texto == "=" {
 
         if estaEscribiendo {
-            if let textoLabel = resultadoLabel.text, let valor = Double(textoLabel) {
-                num2 = valor
+            if let textoCompleto = resultadoLabel.text {
+                let partes = textoCompleto.components(separatedBy: " ")
+                if let ultimo = partes.last, let valor = Double(ultimo) {
+                    num2 = valor
+                } else {
+                    resultadoLabel.text = "Error"
+                    return
+                }
             } else {
                 resultadoLabel.text = "Error"
                 return
@@ -96,8 +110,6 @@ func manejarOperacion(_ texto: String) {
         } else {
             num2 = num1
         }
-
-        historial += " \(num2) ="
 
         var resultadoFinal: Double = 0
 
@@ -119,11 +131,12 @@ func manejarOperacion(_ texto: String) {
             break
         }
 
-        resultadoLabel.text = historial + " \(resultadoFinal)"
+        resultadoLabel.text = "\(resultadoFinal)"
 
         estaEscribiendo = false
         num1 = resultadoFinal
         operacion = ""
+        historial = ""
     }
 
     if texto == "C" {
