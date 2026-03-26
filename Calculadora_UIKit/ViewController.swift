@@ -24,8 +24,13 @@ class ViewController: UIViewController {
 
 func manejarNumero(_ texto: String) {
     
-    if texto == "." && resultadoLabel.text?.contains(".") == true {
-        return
+    if texto == "." {
+        if let textoCompleto = resultadoLabel.text {
+            let partes = textoCompleto.components(separatedBy: " ")
+            if let ultimo = partes.last, ultimo.contains(".") {
+                return
+            }
+        }
     }
     
     if estaEscribiendo {
